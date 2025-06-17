@@ -9,9 +9,8 @@ You should comment out all portions of your portfolio that you have not complete
 
 | **Engineer** | **School** | **Area of Interest** | **Grade** |
 |:--:|:--:|:--:|:--:|
-| Anthony D | Leland HS | Electrical Engineering | Incoming Sophmore
+| Anthony D | Leland HS | Programming | Incoming Sophmore
 
-(https://tomcam.github.io/least-github-pages/adding-images-github-pages-site.html) if you need help.**
 
 ![Headstone Image](AnthonyD.png)
   
