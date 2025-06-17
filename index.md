@@ -82,6 +82,30 @@ Don't forget to place the link of where to buy each component inside the quotati
 | Item Name | What the item is used for | $Price | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
 | Item Name | What the item is used for | $Price | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
 
+# [Starter Project:Jitterbug] (https://learntosolderkits.com/products/jitterbug)
+By creating a jitterbug with red eyes that would vibrate it's legs and move allowed me to understand how to solder. 
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/0aJ8D_24M1k?si=ZHzQcDe4stBDzNmZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+# Challenges
+A major challenge I faced was that one of the jitterbugs eyes were not lighting up. After playing with it I realized that the issue was that the led was oriented the wrong way. To fix this, I had to desolder the LED, flip it around, and finally put it back in and solder it. **From this I learned how to desolder and take out components**
+
+
+
+
+# Components Used
+
+- 1 x Jitterbug PCB
+- 2 x LED (Red)
+- 1 x Vibration Motor
+- 1 x Switch
+- 1 x Coin Cell Battery (3V)
+- 1 x Battery Holder
+- 1 x Cut Wire
+
+
+
+
 # Other Resources/Examples
 One of the best parts about Github is that you can view how other people set up their own work. Here are some past BSE portfolios that are awesome examples. You can view how they set up their portfolio, and you can view their index.md files to understand how they implemented different portfolio components.
 - [Example 1](https://trashytuber.github.io/YimingJiaBlueStamp/)
