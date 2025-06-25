@@ -90,7 +90,7 @@ Don't forget to place the link of where to buy each component inside the quotati
  The **[Jitterbug](https://learntosolderkits.com/products/jitterbug)** involved soldering ca vibration motor, two red LEDs, a switch, and a battery holder onto a custom PCB. Once completed, the Jitterbug uses the motor to skitter across hard surfaces. I really enjoyed this starter project since it allowed me to learn how to solder and really got me into the mood for my summer at BlueStamp.
 
 <p align="center">
-<img align = "center" src="https://github.com/tonydpanda/Anthony_BSEPortfolio/blob/5cab9081c33802fdc2f4d1f073529611fa59fbd6/image.png" alt="Your image title" width="400" />
+<img align = "center" src="https://github.com/tonydpanda/Anthony_BSEPortfolio/blob/5cab9081c33802fdc2f4d1f073529611fa59fbd6/image.png" width="400" />
 </p>
 
 # Challenges
@@ -111,11 +111,3 @@ A major challenge I faced was that one of the jitterbugs eyes were not lighting 
 
 
 
-
-# Other Resources/Examples
-One of the best parts about Github is that you can view how other people set up their own work. Here are some past BSE portfolios that are awesome examples. You can view how they set up their portfolio, and you can view their index.md files to understand how they implemented different portfolio components.
-- [Example 1](https://trashytuber.github.io/YimingJiaBlueStamp/)
-- [Example 2](https://sviatil0.github.io/Sviatoslav_BSE/)
-- [Example 3](https://arneshkumar.github.io/arneshbluestamp/)
-
-To watch the BSE tutorial on how to create a portfolio, click here.
