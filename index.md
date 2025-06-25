@@ -14,7 +14,7 @@ You should comment out all portions of your portfolio that you have not complete
 
 ![Headstone Image](AnthonyD.png)
   
-# Final Milestone
+<!--# Final Milestone
 
 **Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**
 
@@ -38,34 +38,132 @@ For your second milestone, explain what you've worked on since your previous mil
 - Technical details of what you've accomplished and how they contribute to the final goal
 - What has been surprising about the project so far
 - Previous challenges you faced that you overcame
-- What needs to be completed before your final milestone 
+- What needs to be completed before your final milestone -->
 
 # First Milestone
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/29TEZYm_xy0?si=oztg0rRBki9wiKQS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-For your first milestone, describe what your project is and how you plan to build it. You can include:
+<!--For your first milestone, describe what your project is and how you plan to build it. You can include:
 - An explanation about the different components of your project and how they will all integrate together
 - Technical progress you've made so far
 - Challenges you're facing and solving in your future milestones
-- What your plan is to complete your project
+- What your plan is to complete your project -->
 
 # Schematics 
-Here's where you'll put images of your schematics. [Tinkercad](https://www.tinkercad.com/blog/official-guide-to-tinkercad-circuits) and [Fritzing](https://fritzing.org/learning/) are both great resoruces to create professional schematic diagrams, though BSE recommends Tinkercad becuase it can be done easily and for free in the browser. 
+![GSR](gsrSchematic.webp)
+
+Above is the schematics for the GSR sensor 
 
 # Code
-Here's where you'll put your code. The syntax below places it into a block of code. Follow the guide [here]([url](https://www.markdownguide.org/extended-syntax/)) to learn how to customize it to your project needs. 
+This code first calculates the your GSR for 10 seconds then takes the average of them to create the baseline. Next, it reads your GSR and determines if your lieing based off whether or not you have passed the threshold value of 25.
 
 ```c++
+#define NOTE_E5  659
+
+//-----------------------------------------------------------------------
+
+const int GSR = A2;
+int sensorValue = 0;
+int gsr_average = 0;
+int baseline = 0;
+bool calibrated = false;
+bool lie = false;
+const int sampleCount = 500;
+const int thresholdDrop = 25; 
+int sampleInterval = 1;
+int count = 0;
+int baselineReadings[10];
+int readingIndex = 0;
+
+
 void setup() {
-  // put your setup code here, to run once:
   Serial.begin(9600);
-  Serial.println("Hello World!");
+  delay(2000);
+  Serial.println("Calibrating baseline...");
+
+  Serial.println("Stay still for 10 seconds...");
+  
+  int sum = 0;
+  int totalSum =0;
+  int readingIndex = 0;
+  unsigned long startTime = millis();
+  unsigned long duration = 10000; // 10
+  unsigned long lastPrintTime = millis();
+
+  while (millis() - startTime <= duration) {
+    int localSum = 0;
+    
+    for (int i = 0; i < 10; i++) {
+      sensorValue = analogRead(GSR);
+      localSum += sensorValue;
+      delay(1); 
+    }
+ 
+  if (millis() - lastPrintTime >= 1000) {
+    baseline = localSum / 10;
+    Serial.print((millis() - startTime) / 1000);
+    Serial.print(" GSR: ");
+    Serial.println(baseline);
+    baselineReadings[readingIndex] = baseline;
+    
+    readingIndex++;
+   
+    lastPrintTime += 1000;
+  }
+
+  }
+
+  // average baseline
+  for (int i = 0; i < readingIndex; i++) {
+    totalSum += baselineReadings[i];
+  }
+  baseline = totalSum / readingIndex;
+
+  Serial.println("-----------------------------");
+  Serial.print("Baseline GSR average: ");
+  Serial.println(baseline);
+  Serial.println("-----------------------------");
+  delay(2000);
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
 
+
+ 
+void loop() {
+//read gsr
+  int sensorValue = 0; 
+  int sum = 0;
+  int gsr_average = 0;
+  for (int i = 0; i < 10; i++) {
+    sensorValue = analogRead(GSR);
+    sum += sensorValue;
+    delay(1);
+  }
+
+  gsr_average = sum / 10;
+  Serial.print("GSR: ");
+  Serial.print(gsr_average);
+
+  // check gsr drop
+  if (baseline - gsr_average > thresholdDrop) 
+  {
+    Serial.println(" LIE DETECTED");
+    if(!lie){
+    tone(5,NOTE_E5, 1000);
+    lie = true;
+
+    }
+   
+
+  }  
+    else {
+    Serial.println(" NORMAL");
+    lie = false;
+
+  }
+  delay(1000);
+  
 }
 ```
 
@@ -73,11 +171,11 @@ void loop() {
 Here's where you'll list the parts in your project. To add more rows, just copy and paste the example rows below.
 Don't forget to place the link of where to buy each component inside the quotation marks in the corresponding row after href =. Follow the guide [here]([url](https://www.markdownguide.org/extended-syntax/)) to learn how to customize this to your project needs. 
 
-| **Part** | **Note** | **Price** | **Link** |
+<!--| **Part** | **Note** | **Price** | **Link** |
 |:--:|:--:|:--:|:--:|
 | Item Name | What the item is used for | $Price | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
 | Item Name | What the item is used for | $Price | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
-| Item Name | What the item is used for | $Price | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
+| Item Name | What the item is used for | $Price | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |-->
 
 # Starter Project: Jitterbug
 
