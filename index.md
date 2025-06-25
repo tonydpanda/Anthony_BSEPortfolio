@@ -82,6 +82,9 @@ Don't forget to place the link of where to buy each component inside the quotati
 # Starter Project: Jitterbug
  The [Jitterbug](https://learntosolderkits.com/products/jitterbug) involved soldering ca vibration motor, two red LEDs, a switch, and a battery holder onto a custom PCB. Once completed, the Jitterbug uses the motor to skitter across hard surfaces. I really enjoyed this starter project since it allowed me to learn how to solder and really got me into the mood for my summer at BlueStamp.
 
+<p align="center">
+<img align = "center" src="https://github.com/tonydpanda/Anthony_BSEPortfolio/blob/5cab9081c33802fdc2f4d1f073529611fa59fbd6/image.png" alt="Your image title" width="400" />
+</p>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/0aJ8D_24M1k?si=ZHzQcDe4stBDzNmZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
