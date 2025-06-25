@@ -50,14 +50,16 @@ For your second milestone, explain what you've worked on since your previous mil
  <p align="center">
 <img src="gsrSchematic.webp" align="center" height="400" width="400">
  </p>
-
+ <p align="center">
 Above is the schematics for the GSR sensor 
+ </p>
 
  <p align="center">
 <img src="vibration1.jpg" align="center" height="400" width="400">
  </p>
-
+ <p align="center">
  Above is schematics for the vibration motor
+ </p>
 
 
 # Code
