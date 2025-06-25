@@ -6,7 +6,7 @@ I'm building a lie detector that uses a Galvanic Skin Response(GSR) sensor to de
 | Anthony D | Leland HS | Programming | Incoming Sophmore
 
 
-![Headstone Image](AnthonyD.png) | width=100
+![Headstone Image](AnthonyD.png)
   
 <!--# Final Milestone
 
