@@ -9,7 +9,9 @@ I'm building a lie detector that uses a Galvanic Skin Response(GSR) sensor to de
  <p align="center">
 <img src="AnthonyD.png" align="center" height="1000" width="900">
  </p>
-  
+ 
+
+
 <!--# Final Milestone
 
 **Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**
@@ -39,6 +41,18 @@ For your second milestone, explain what you've worked on since your previous mil
 # First Milestone
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/29TEZYm_xy0?si=oztg0rRBki9wiKQS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+For my first milestone, I successfully integrated the GSR sensor with an Arduino to detect g stress-related changes in skin conductivity. I programmed the Arduino to create a baseline and used simple threshold to identify sudden drops in GSR values, which may indicate stress or a potential lie. When such a change is detected, the Arduino triggers a vibration motor to alert that a lie has been detected This milestone markes the first functional version of my lie detector.
+
+# Challenges
+
+Initially, I used a timer-based approach to calculate the baseline by averaging GSR sensor readings over a set period of time. However, I noticed that the values collected this way were different from the ones I got during the actual lie detection test, where I was using a for loop to gather data. This mismatch created inconsistency between the baseline and live readings, making the lie detection less reliable.
+
+To solve this, I modified my approach by combining both methods. I kept the for loop for consistent data collection but controlled it using a timer. This allowed me to gather a fixed number of sensor readings, ensuring the baseline was calculated using the same method and timing structure as the readings taken during the actual test. This change improved the accuracy and consistency of my system.
+
+# Next Steps
+My next steps are to improve the accuracy of the lie detector by smoothing out the GSR values using techniques like moving averages to reduce noise and random fluctuations. I also plan to create a personalized "lying threshold" based on user input. I will ask the user to intentionally lie a few times so the GSR sensor can record their stress response patterns. This data will help establish a more accurate threshold for detecting real lies later. Additionally, I plan to integrate a heartbeat sensor to track changes in pulse rate alongside skin conductivity. By combining both biometric signals, the lie detector will be able to make more reliable and confident predictions.
+
 
 <!--For your first milestone, describe what your project is and how you plan to build it. You can include:
 - An explanation about the different components of your project and how they will all integrate together
