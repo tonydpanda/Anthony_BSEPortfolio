@@ -6,7 +6,9 @@ I'm building a lie detector that uses a Galvanic Skin Response(GSR) sensor to de
 | Anthony D | Leland HS | Programming | Incoming Sophmore
 
 
-![Headstone Image](AnthonyD.png)
+ <p align="center">
+<img src="AnthonyD.png" align="center" height="1000" width="900">
+ </p>
   
 <!--# Final Milestone
 
@@ -45,9 +47,18 @@ For your second milestone, explain what you've worked on since your previous mil
 - What your plan is to complete your project -->
 
 # Schematics 
-![GSR](gsrSchematic.webp)
+ <p align="center">
+<img src="gsrSchematic.webp" align="center" height="400" width="400">
+ </p>
 
 Above is the schematics for the GSR sensor 
+
+ <p align="center">
+<img src="vibration1.jpg" align="center" height="400" width="400">
+ </p>
+
+ Above is schematics for the vibration motor
+
 
 # Code
 This code first calculates the your GSR for 10 seconds then takes the average of them to create the baseline. Next, it reads your GSR and determines if your lieing based off whether or not you have passed the threshold value of 25.
@@ -180,9 +191,9 @@ Don't forget to place the link of where to buy each component inside the quotati
 
 
  The **[Jitterbug](https://learntosolderkits.com/products/jitterbug)** involved soldering ca vibration motor, two red LEDs, a switch, and a battery holder onto a custom PCB. Once completed, the Jitterbug uses the motor to skitter across hard surfaces. I really enjoyed this starter project since it allowed me to learn how to solder and really got me into the mood for my summer at BlueStamp.
- 
+ <p align="center">
 <img src="image.png" align="center" height="400" width="400">
-
+ </p>
 
 
 
