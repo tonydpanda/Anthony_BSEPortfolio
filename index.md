@@ -44,7 +44,7 @@ For your second milestone, explain what you've worked on since your previous mil
 
 For my first milestone, I successfully integrated the GSR sensor with an Arduino to detect g stress-related changes in skin conductivity. I programmed the Arduino to create a baseline and used simple threshold to identify sudden drops in GSR values, which may indicate stress or a potential lie. When such a change is detected, the Arduino triggers a vibration motor to alert that a lie has been detected This milestone markes the first functional version of my lie detector.
  <p align="center">
-<img src="IMG_2231 2.heic" align="center" height="600" width="600">
+<img src="IMG_2231 2.png" align="center" height="600" width="600">
  </p>
 
 # Challenges
