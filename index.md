@@ -22,21 +22,36 @@ For your final milestone, explain the outcome of your project. Key details to in
 - What you've accomplished since your previous milestone
 - What your biggest challenges and triumphs were at BSE
 - A summary of key topics you learned about
-- What you hope to learn in the future after everything you've learned at BSE
-
-
+- What you hope to learn in the future after everything you've learned at BSE  -->
 
 # Second Milestone
 
-**Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/y3VAmNlER5Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/KK1g4qwSJLM?si=a0iQGYZuhzBqP7ZP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-For your second milestone, explain what you've worked on since your previous milestone. You can highlight:
-- Technical details of what you've accomplished and how they contribute to the final goal
-- What has been surprising about the project so far
-- Previous challenges you faced that you overcame
-- What needs to be completed before your final milestone -->
+My goal for my 2nd milestone to my lie detector project was to not only use a GSR sensor to detect if someone is lying but also using a heartbeat sensor. Using a finger pulse sensor, I was able to detect someones heartbeat, create a baseline and detect if someone is lying based of that threshold. The pulse sensor shines red and infrared light through your fingertip and measure how much light is absorbed. This allows the sensor to calculate the oxygen saturation level and pulse rate.
+
+
+ <p align="center">
+<img src="IMG_2246.jpg" align="center" height="400" width="400">
+ </p>
+ <p align="center">
+Heartbeat sensor successfully added using a breadboard.
+ </p>
+
+
+
+# Challenges
+
+At first, I thought I wouldn't have any issues with the pulse sensor but I was quite suprised to learn that my pulse sensor needed time to warm up. This was a major roadblock for me becuase I had no idea how to implement a warmup to my code. However, after some tries, I figured out a way to warm up the pulse sensor by continously getting the heartbeat until it was the range of a real hearbeat until finally starting the baseline calibration.
+
+# Next Steps
+
+A problem as you can see in the video is that I need to show you my computer to see your heartbeat and GSR , so to fix this I hope to add a LCD display so that the user can see their heartbeat and GSR in real time. Moreover, I hope to add a moving average to cancel out any bad readings and I also hope to make my heartbeat sensor calibration better since as you can see in the video, it is inconsistent.
+
+
+
+
 
 # First Milestone
 
@@ -77,6 +92,7 @@ Above is the schematics for the GSR sensor
  <p align="center">
  Above is schematics for the vibration motor
  </p>
+ 
 
 
 # Code
