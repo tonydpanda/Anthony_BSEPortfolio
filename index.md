@@ -12,17 +12,34 @@ I'm building a lie detector that uses a Galvanic Skin Response(GSR) sensor to de
  
 
 
-<!--# Final Milestone
+# Final Milestone
 
-**Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dEcS0x2d0PI?si=dq5pf3JnY4kedbfv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/F7M7imOVGug" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+After many ups and downs I have finally reached my 3rd and final milestone for my project! For this milestone, I added a LCD display. I added this display for the purpose of allowing the user to look at their GSR and heartbeat without having to have to look at my computer.
+
+Adding on, I also increased the accuracy of both sensors by ensuring that the rates were stable before doing the actual lie detection. To do this I wrote code to ensure that the sensors would output values that were close to each other at least 10-20 times in order to move on from the baseline calibration.
+
+ <p align="center">
+<img src="finalp.jpg" align="center" height="400" width="400">
+ </p>
+ <p align="center">
+My final project!
+ </p>
+
+
+# Challenges
+
+A major challenge I faced was installing my LCD screen. The first time I installed it, I thought I had all the wires in the right place, but unfortunately I did not which caused my arduino to short circuit. Before trying again, I took a look at was wrong and I figured out that I had accidentally put the voltage pin into the ground rail, which caused the arduino to short. M
+
+
+
 
 For your final milestone, explain the outcome of your project. Key details to include are:
 - What you've accomplished since your previous milestone
 - What your biggest challenges and triumphs were at BSE
 - A summary of key topics you learned about
-- What you hope to learn in the future after everything you've learned at BSE  -->
+- What you hope to learn in the future after everything you've learned at BSE  
 
 # Second Milestone
 
@@ -106,112 +123,225 @@ Above is the schematics for the pulse sensor
 This code first calculates the your GSR for 10 seconds then takes the average of them to create the baseline. Next, it reads your GSR and determines if your lieing based off whether or not you have passed the threshold value of 25.
 
 ```c++
+#include <PulseSensorPlayground.h>
+#include <LiquidCrystal.h>
 #define NOTE_E5  659
+#define NOTE1 800
 
-//-----------------------------------------------------------------------
+
+//--
+
+//vars
+const int PulseWire = 0;  
+
 
 const int GSR = A2;
+const int Threshold = 550;
+
+const int requiredStableGSR = 20;
+int gsrStableCount = 0;
+int gsrLast = 0;
+int gsrSum = 0;
+const int gsrTolerance = 5;
+
 int sensorValue = 0;
 int gsr_average = 0;
 int baseline = 0;
-bool calibrated = false;
 bool lie = false;
-const int sampleCount = 500;
-const int thresholdDrop = 25; 
-int sampleInterval = 1;
-int count = 0;
-int baselineReadings[10];
+int totalSum = 0;
+int avgBpm = 0;
+const int thresholdDrop = 25;
 int readingIndex = 0;
+int baselineReadings[10];
+int myBPM = 0;
+int bpmSum =0;
+int gsr=0;
+int bpmThreshold = 5;
 
+PulseSensorPlayground pulseSensor;
+
+LiquidCrystal lcd(7, 8, 9, 10, 11, 12);
 
 void setup() {
   Serial.begin(9600);
-  delay(2000);
-  Serial.println("Calibrating baseline...");
+  lcd.begin(16, 2);
+  lcd.print("Warming up...");
+  pulseSensor.analogInput(PulseWire);
+  pulseSensor.setThreshold(Threshold);
+  pulseSensor.begin();
 
-  Serial.println("Stay still for 10 seconds...");
-  
-  int sum = 0;
-  int totalSum =0;
-  int readingIndex = 0;
-  unsigned long startTime = millis();
-  unsigned long duration = 10000; // 10
-  unsigned long lastPrintTime = millis();
+  Serial.println("Warming up PulseSensor...");
+  unsigned long warmupStart = millis();
+  const int requiredStableReadings = 10;
+  int stableReadings = 0;
+  int lastBPM = 0;
+  int count = 0;
 
-  while (millis() - startTime <= duration) {
-    int localSum = 0;
+  //pulsesensor wwarmup
+
+  while (stableReadings < requiredStableReadings) {
+    if (pulseSensor.sawStartOfBeat()) {
+      for (int i = 0; i < 10; i++) {
+        pulseSensor.sawNewSample();
+        pulseSensor.outputSample();
+        delay(2);
+      }
+
+      int bpm = pulseSensor.getBeatsPerMinute();
+      if (bpm > 50 && bpm < 120) {
+        if (abs(bpm - lastBPM) < 2 && lastBPM != 0) {
+          stableReadings++;
+          bpmSum += bpm;
+          count++;
+          Serial.print("Stable BPM: ");
+          Serial.println(bpm);
+        } else {
+          stableReadings = 0;
+        }
+        lastBPM = bpm;
+      } else {
+        stableReadings = 0;
+        lastBPM = 0;
+      }
+
     
-    for (int i = 0; i < 10; i++) {
-      sensorValue = analogRead(GSR);
-      localSum += sensorValue;
-      delay(1); 
+      lcd.clear();
+      lcd.setCursor(0, 0);
+      lcd.print("Warming up BPM");
+      lcd.setCursor(0, 1);
+      lcd.print("BPM: ");
+      lcd.print(bpm);
     }
- 
-  if (millis() - lastPrintTime >= 1000) {
-    baseline = localSum / 10;
-    Serial.print((millis() - startTime) / 1000);
-    Serial.print(" GSR: ");
-    Serial.println(baseline);
-    baselineReadings[readingIndex] = baseline;
-    
-    readingIndex++;
-   
-    lastPrintTime += 1000;
+
+    delay(20);
   }
 
-  }
+  avgBpm = bpmSum / count;
+  Serial.println("PulseSensor ready.");
+  Serial.print("Base BPM: ");
+  Serial.println(avgBpm);
 
-  // average baseline
-  for (int i = 0; i < readingIndex; i++) {
-    totalSum += baselineReadings[i];
-  }
-  baseline = totalSum / readingIndex;
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Base BPM: ");
+  lcd.setCursor(10, 0);
+  lcd.print(avgBpm);
 
-  Serial.println("-----------------------------");
-  Serial.print("Baseline GSR average: ");
-  Serial.println(baseline);
-  Serial.println("-----------------------------");
   delay(2000);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Wait 10 sec pls");
+  Serial.println("Wait 10 sec pls");
+
+//gsr warmup
+Serial.println("Calibrating GSR...");
+lcd.clear();
+lcd.setCursor(0, 0);
+lcd.print("Calibrating GSR");
+delay(1000);
+
+while (gsrStableCount < requiredStableGSR) {
+  int localSum = 0;
+  for (int i = 0; i < 10; i++) {
+    sensorValue = analogRead(GSR);
+    localSum += sensorValue;
+    delay(1);
+  }
+  int gsrReading = localSum / 10;
+
+  if (gsrStableCount == 0 || abs(gsrReading - gsrLast) <= gsrTolerance) {
+    gsrSum += gsrReading;
+    gsrStableCount++;
+    gsrLast = gsrReading;
+
+
+
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Stable GSR");
+    lcd.setCursor(0, 1);
+    lcd.print("Val: ");
+    lcd.print(gsrReading);
+  } else {
+    Serial.print("Unstable GSR: ");
+    Serial.print(gsrReading);
+    Serial.print(" vs ");
+    Serial.println(gsrLast);
+    gsrStableCount = 0;
+    gsrSum = 0;
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Unstable GSR...");
+    lcd.setCursor(0, 1);
+    lcd.print("Retrying...");
+    delay(1000);
+  }
+
+  delay(500);
 }
 
+baseline = gsrSum / requiredStableGSR;
 
 
- 
+Serial.print("Stable GSR: ");
+Serial.println(baseline);
+
+lcd.clear();
+lcd.setCursor(0, 0);
+lcd.print("Baseline GSR:");
+lcd.setCursor(0, 1);
+lcd.print(baseline);
+delay(2000);
+
+}
+
 void loop() {
-//read gsr
-  int sensorValue = 0; 
   int sum = 0;
-  int gsr_average = 0;
   for (int i = 0; i < 10; i++) {
     sensorValue = analogRead(GSR);
     sum += sensorValue;
     delay(1);
   }
 
-  gsr_average = sum / 10;
-  Serial.print("GSR: ");
-  Serial.print(gsr_average);
-
-  // check gsr drop
-  if (baseline - gsr_average > thresholdDrop) 
-  {
-    Serial.println(" LIE DETECTED");
-    if(!lie){
-    tone(5,NOTE_E5, 1000);
-    lie = true;
-
+  if (pulseSensor.sawStartOfBeat()) {
+    for (int i = 0; i < 10; i++) {
+      pulseSensor.sawNewSample();
+      pulseSensor.outputSample();
+      delay(2);
     }
-   
-
-  }  
-    else {
-    Serial.println(" NORMAL");
-    lie = false;
-
+    myBPM = pulseSensor.getBeatsPerMinute();
   }
-  delay(1000);
-  
+
+  gsr_average = sum / 10;
+
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("BPM: ");
+  lcd.print(myBPM);
+  lcd.setCursor(0, 1);
+  lcd.print("GSR: ");
+  lcd.print(gsr_average);
+  //lie detect
+
+if ((baseline - gsr_average > thresholdDrop) && (myBPM > bpmThreshold)) {
+  lcd.setCursor(10, 1);
+  lcd.print("LIE!");
+  Serial.println(" LIE DETECTED"); 
+  if (!lie) {
+    tone(5, NOTE_E5, 1000); 
+    lie = true;
+  }
+} else {
+  lcd.setCursor(10, 1);
+  lcd.print("     ");  
+  Serial.println(" NORMAL");
+  lie = false;
 }
+
+delay(1000);
+}
+
+
 ```
 
 <!--# Bill of Materials
