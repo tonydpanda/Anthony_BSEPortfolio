@@ -114,7 +114,13 @@ Above is the schematics for the GSR sensor
 <img src="pulse.webp" align="center" height="400" width="400">
  </p>
  <p align="center">
-Above is the schematics for the pulse sensor
+Above is the schematics for the piezo sensor
+ </p>
+  <p align="center">
+<img src="lcd.png" align="center" height="400" width="400">
+ </p>
+ <p align="center">
+Above is the schematics for the LCD display
  </p>
  
 
