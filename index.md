@@ -21,7 +21,7 @@ After many ups and downs I have finally reached my 3rd and final milestone for m
 Adding on, I also increased the accuracy of both sensors by ensuring that the rates were stable before doing the actual lie detection. To do this I wrote code to ensure that the sensors would output values that were close to each other at least 10-20 times in order to move on from the baseline calibration.
 
  <p align="center">
-<img src="finalp.jpg" align="center" height="400" width="400">
+<img src="finalp.png" align="center" height="400" width="400">
  </p>
  <p align="center">
 My final project!
@@ -344,15 +344,15 @@ delay(1000);
 
 ```
 
-<!--# Bill of Materials
+# Bill of Materials
 Here's where you'll list the parts in your project. To add more rows, just copy and paste the example rows below.
 Don't forget to place the link of where to buy each component inside the quotation marks in the corresponding row after href =. Follow the guide [here]([url](https://www.markdownguide.org/extended-syntax/)) to learn how to customize this to your project needs. 
 
 | **Part** | **Note** | **Price** | **Link** |
 |:--:|:--:|:--:|:--:|
-| Item Name | What the item is used for | $Price | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
-| Item Name | What the item is used for | $Price | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
-| Item Name | What the item is used for | $Price | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |-->
+| GSR sensor | Used to detect how much you sweat.| $12 | <a href="https://www.seeedstudio.com/Grove-GSR-sensor-p-1614.html"> Link </a> |
+| Finger Pulssensor | Used to determine your heartbeat | $29 | <a href="https://pulsesensor.com/products/new-ring-bundle"> Link </a> |
+|ELEGOO Ardunio Uno Starter Kit| LCD Display and Piezo Buzzer | $43 | <a href="https://us.elegoo.com/products/elegoo-uno-r3-super-starter-kit?srsltid=AfmBOoo0Mqo5qU166GWTCoQqZWDo6ggsjd_S013AzcrnyVcMvj5E5Tdz"> Link </a> |
 
 # Starter Project: Jitterbug
 
