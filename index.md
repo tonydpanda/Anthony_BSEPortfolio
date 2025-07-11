@@ -32,15 +32,6 @@ My final project!
 
 A major challenge I faced was installing my LCD screen. The first time I installed it, I thought I had all the wires in the right place, but unfortunately I did not which caused my arduino to short circuit. Before trying again, I took a look at was wrong and I figured out that I had accidentally put the voltage pin into the ground rail, which caused the arduino to short. M
 
-
-
-
-For your final milestone, explain the outcome of your project. Key details to include are:
-- What you've accomplished since your previous milestone
-- What your biggest challenges and triumphs were at BSE
-- A summary of key topics you learned about
-- What you hope to learn in the future after everything you've learned at BSE  
-
 # Second Milestone
 
 
